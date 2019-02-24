@@ -1,27 +1,42 @@
-# AngularBoard
+# W1-Application-structure
+Práctica para el sprint de la primera semana, correspondiente a los temas **0-Hello** y **1-Base**.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
+## Objetivos
 
-## Development server
+- Crear una aplicación para gestionar proyectos.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Sentar las bases de la aplicación.
 
-## Code scaffolding
+- Por ahora no habrá código funcional específico
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Libre denominación y estética
 
-## Build
+## Requisitos previos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Imprescindible: NodeJS versión 10 o superior
 
-## Running unit tests
+- Imprescindible: Angular CLI versión 7 o superior
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Recomendado Editor VSCode
 
-## Running end-to-end tests
+- Recomendado cuenta en GitHub
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- Recomendado Cliente GIT
 
-## Further help
+## Tareas
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- [ ] create **Application** with routing
+- [ ] create **CoreModule** for layout
+- [ ] create **LayoutComponent** _exported_
+- [ ] create **HeaderComponent**
+- [ ] create **MainComponent**
+- [ ] create **FooterComponent**
+- [ ] create **SharedModule** for export components
+- [ ] create **TagValueComponent** _exported_
+
+## Recursos
+
+Para principiantes en Git:
+[Git - la guía sencilla](http://rogerdudler.github.io/git-guide/index.es.html)
+
+> Recomendación: Seguir los guiones de las lecciones 0 y 1.

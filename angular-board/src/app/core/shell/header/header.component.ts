@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
-  title = environment.title + ' angular-board Hello World';
+  title = environment.title + ' Menú';
   constructor() { }
 
   ngOnInit() {

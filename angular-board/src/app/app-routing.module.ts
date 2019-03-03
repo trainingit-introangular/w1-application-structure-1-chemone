@@ -4,6 +4,9 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
 import { HeroesComponent } from './heroes-component/heroes.component';
 
 const routes: Routes = [
+  { path: 'projects',
+    loadChildren: './projects/projects.module#ProjectsModule'
+  },
   { path: 'about',
     loadChildren: './about/about.module#AboutModule'
   },

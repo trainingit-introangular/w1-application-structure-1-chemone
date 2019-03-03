@@ -1,3 +1,7 @@
+<h2>{{ header }}</h2>
+<p>{{ description | uppercase }}</p>
 <p>
-  home works!
+  Tienes <mark [class]="counterClass">{{ numProjects }}</mark>
+  proyectos actualmente.
 </p>
+<router-outlet></router-outlet>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Project } from '../projects/models/project';
-import { ProjectsComponent } from '../projects/projects.component';
 
 @Component({
   selector: 'app-new-project',

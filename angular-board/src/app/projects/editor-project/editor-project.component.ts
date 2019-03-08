@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Project } from '../projects/models/project';
 import { environment } from 'src/environments/environment';
 
@@ -21,7 +21,7 @@ export class EditorProjectComponent implements OnInit {
 
   }
 
-  public saveChanges(){
+  public saveChanges() {
     environment.projects.filter(c => c.id == this.projectId)[0].name = this.projectEnvironment.name;
     window.history.back();
   }

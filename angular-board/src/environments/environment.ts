@@ -21,7 +21,9 @@ export const environment = {
 
     { id: 3, name: 'Clean my room' }
 
-  ]
+  ],
+
+  unitsCulture: 'metric'
 
 };
 

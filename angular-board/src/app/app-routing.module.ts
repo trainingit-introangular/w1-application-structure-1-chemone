@@ -4,11 +4,16 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
 import { HeroesComponent } from './heroes-component/heroes.component';
 
 const routes: Routes = [
+  {
+    path: 'converter',
+    loadChildren: './converter/converter.module#ConverterModule'
+  },
+  {
+    path: 'car',
+    loadChildren: './car/car.module#CarModule'
+  },
   { path: 'projects',
     loadChildren: './projects/projects.module#ProjectsModule'
-  },
-  { path: 'about',
-    loadChildren: './about/about.module#AboutModule'
   },
   { path: '',
     loadChildren: './home/home.module#HomeModule'
@@ -18,6 +23,9 @@ const routes: Routes = [
   },
   { path: 'heroes',
     component: HeroesComponent
+  },
+  { path: 'about',
+    loadChildren: './about/about.module#AboutModule'
   },
   { path: 'not-found',
     component: NotFoundComponent

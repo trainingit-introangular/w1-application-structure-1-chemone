@@ -1,3 +1,17 @@
-<p>
-  new-project-forms works!
-</p>
+<form>
+  <section>
+    <label for="name">Name</label>
+    <input name="name" type="text" [(ngModel)]="projectname" placeholder="Project Name" />
+    <input value="Save" type="submit" (click)="update.emit(projectname)"/>
+  </section>
+  <!--<section>
+      <ul *ngIf="addedProjects.length>0; else empty">
+          <li *ngFor="let project of addedProjects">
+            <span>{{ project.name }}</span>
+          </li>
+        </ul>
+        <ng-template #empty>
+          <i>No data yet</i>
+        </ng-template>
+  </section>-->
+</form>

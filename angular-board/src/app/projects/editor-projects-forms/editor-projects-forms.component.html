@@ -1,3 +1,3 @@
-<p>
-  editor-projects-forms works!
-</p>
+<label for="name">Name</label>
+<input name="name" type="text" [(ngModel)]="projectEnvironment.name" placeholder="Project Name" />
+<input value="Save" type="submit" (click)="saveChanges()"/>

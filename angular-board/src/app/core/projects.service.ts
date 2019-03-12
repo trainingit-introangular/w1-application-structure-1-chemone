@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../projects/projects/models/project';
 import { environment } from 'src/environments/environment';
+import { ProjectCrud } from '../projects/projects/models/projectCrud';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectsService {
+export class ProjectsService implements ProjectCrud{
   projectList: Project[];
 
   constructor() { }
@@ -17,10 +18,11 @@ export class ProjectsService {
 
   public editChanges(project: Project) {
     environment.projects.filter(c => c.id == project.id)[0].name = project.name;
+    window.history.back();
   }
 
-  public deleteProject(project: Project){
-    const ind = environment.projects.findIndex(c => c.id == project.id)[0];
+  public deleteProject(id: number){
+    const ind = environment.projects.findIndex(c => c.id == id);
     environment.projects.splice(ind, 1);
   }
 

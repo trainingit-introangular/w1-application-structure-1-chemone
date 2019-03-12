@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from './models/project';
 import { environment } from 'src/environments/environment';
+import { ProjectsService } from 'src/app/core/projects.service';
 
 @Component({
   selector: 'app-projects',
@@ -11,8 +12,7 @@ export class ProjectsComponent implements OnInit {
 
   public projects: Project[];
 
-  constructor() { }
-
+  constructor(private servicio: ProjectsService) { }
   ngOnInit() {
     this.projects = [];
     for (const proyecto of environment.projects){
@@ -22,6 +22,16 @@ export class ProjectsComponent implements OnInit {
       };
       this.projects.push(project);
     }
+  }
+
+  public onUpdate(proyectos: string) {
+    this.servicio.insertProject(proyectos);
+    this.projects = environment.projects;
+  }
+
+  public onDelete(id: number) {
+    this.servicio.deleteProject(id);
+    this.projects = environment.projects;
   }
 
 }

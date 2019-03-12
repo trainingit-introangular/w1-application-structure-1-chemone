@@ -1,10 +1,6 @@
-<ul *ngIf="projects.length>0; else empty">
-  <li *ngFor="let project of projects">
-    <span>{{ project.name}}</span> <a routerLink="editproject/{{project.id}}" class="button"> <span> Editar Proyecto </span> </a>
-  </li>
-</ul>
-<ng-template #empty>
-  <i>No data yet</i>
-</ng-template>
-<a routerLink="newproject" class="button"> <span> Nuevo Proyecto </span> </a><br>
-<router-outlet></router-outlet>
+<app-projects-list
+[projects]="projects"
+(delete)="onDelete($event)"></app-projects-list>
+<app-new-project-forms
+(update)="onUpdate($event)"></app-new-project-forms>
+

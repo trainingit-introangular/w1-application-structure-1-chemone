@@ -30,6 +30,13 @@ const routes: Routes = [
   { path: 'not-found',
     component: NotFoundComponent
   },
+  { path: 'rates',
+    loadChildren: './rates/rates.module#RatesModule'
+  },
+  {
+    path: 'notifications',
+    loadChildren: './notifications/notifications.module#NotificationsModule'
+    },
   { path: '**',
     redirectTo: 'not-found'
   }

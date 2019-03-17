@@ -2,18 +2,20 @@ import { Injectable } from '@angular/core';
 import { Project } from '../projects/projects/models/project';
 import { environment } from 'src/environments/environment';
 import { ProjectCrud } from '../projects/projects/models/projectCrud';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectsService implements ProjectCrud{
+export class ProjectsService implements ProjectCrud {
   projectList: Project[];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   public insertProject(projectname: string) {
     const projetToAdd: Project = {id: environment.projects.length + 1, name: projectname };
-    environment.projects.push({...projetToAdd});
+    //environment.projects.push({...projetToAdd});
+    this.httpClient.post('https://api-base.herokuapp.com/api/pub/projects', projetToAdd).subscribe();
   }
 
   public editChanges(project: Project) {
@@ -28,5 +30,9 @@ export class ProjectsService implements ProjectCrud{
 
   public filterProject(id: number){
     return environment.projects.filter(c => c.id == id)[0];
+  }
+
+  public returnUrlList(){
+    return this.httpClient.get('https://api-base.herokuapp.com/api/pub/projects').subscribe();
   }
 }

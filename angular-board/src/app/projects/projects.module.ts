@@ -10,13 +10,21 @@ import { FilterProjectsComponent } from './filter-projects/filter-projects.compo
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { EditorProjectsFormsComponent } from './editor-projects-forms/editor-projects-forms.component';
 import { NewProjectFormsComponent } from './new-project-forms/new-project-forms.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [NewProjectComponent, EditorProjectComponent, ProjectsComponent, FilterProjectsComponent, ProjectsListComponent, EditorProjectsFormsComponent, NewProjectFormsComponent],
+  declarations: [NewProjectComponent,
+    EditorProjectComponent,
+    ProjectsComponent,
+    FilterProjectsComponent,
+    ProjectsListComponent,
+    EditorProjectsFormsComponent,
+    NewProjectFormsComponent],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class ProjectsModule { }

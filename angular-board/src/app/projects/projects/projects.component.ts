@@ -11,16 +11,22 @@ import { ProjectsService } from 'src/app/core/projects.service';
 export class ProjectsComponent implements OnInit {
 
   public projects: Project[];
+  public urlProjects: Project[];
 
   constructor(private servicio: ProjectsService) { }
   ngOnInit() {
     this.projects = [];
-    for (const proyecto of environment.projects){
+    this.urlProjects = [];
+    for (const proyecto of environment.projects) {
       const project: Project = {
         id: proyecto.id,
         name: proyecto.name
       };
       this.projects.push(project);
+    }
+    this.urlProjects = this.servicio.returnUrlList();
+    if(this.servicio.returnUrlList() != null){
+      this.projects.concat(this.urlProjects);
     }
   }
 

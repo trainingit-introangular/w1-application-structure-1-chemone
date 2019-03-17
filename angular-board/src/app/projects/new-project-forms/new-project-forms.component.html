@@ -3,6 +3,7 @@
     <label for="name">Name</label>
     <input name="name" type="text" [(ngModel)]="projectname" placeholder="Project Name" />
     <input value="Save" type="submit" (click)="update.emit(projectname)"/>
+    <input value="Delete All Url" type="submit" (click)="deleteUrl()"/>
   </section>
   <!--<section>
       <ul *ngIf="addedProjects.length>0; else empty">

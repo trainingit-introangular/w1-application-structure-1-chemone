@@ -21,4 +21,7 @@ export class NewProjectFormsComponent implements OnInit {
     this.serviceProject.insertProject(this.projectname);
   }
 
+  public deleteUrl(){
+    this.serviceProject.clearProjectsUrl();
+  }
 }

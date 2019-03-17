@@ -37,4 +37,8 @@ export class ProjectsService implements ProjectCrud {
     this.httpClient.get<Project[]>('https://api-base.herokuapp.com/api/pub/projects').subscribe(apiResponse => (projects = apiResponse));
     return projects;
   }
+
+  public clearProjectsUrl(){
+    this.httpClient.delete('https://api-base.herokuapp.com/api/pub/projects').subscribe();
+  }
 }

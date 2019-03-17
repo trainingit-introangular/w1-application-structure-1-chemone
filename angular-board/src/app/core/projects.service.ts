@@ -3,12 +3,15 @@ import { Project } from '../projects/projects/models/project';
 import { environment } from 'src/environments/environment';
 import { ProjectCrud } from '../projects/projects/models/projectCrud';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap, share } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService implements ProjectCrud {
   projectList: Project[];
+  public listaObservable$: Observable<Project[]>;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -34,7 +37,12 @@ export class ProjectsService implements ProjectCrud {
 
   public returnUrlList(){
     let projects: Project[];
-    this.httpClient.get<Project[]>('https://api-base.herokuapp.com/api/pub/projects').subscribe(apiResponse => (projects = apiResponse));
+    projects = [];
+    this.listaObservable$ = this.httpClient.get<Project[]>('https://api-base.herokuapp.com/api/pub/projects').pipe(
+      share(),
+      tap(apiResponse => (projects.concat(apiResponse))));
+    //this.httpClient.get<Project[]>('https://api-base.herokuapp.com/api/pub/projects').subscribe(apiResponse => (projects = apiResponse));
+    window.alert(projects);
     return projects;
   }
 

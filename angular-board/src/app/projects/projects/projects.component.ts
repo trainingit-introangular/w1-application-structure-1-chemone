@@ -25,7 +25,7 @@ export class ProjectsComponent implements OnInit {
       this.projects.push(project);
     }
     this.urlProjects = this.servicio.returnUrlList();
-    if(this.servicio.returnUrlList() != null){
+    if (this.servicio.returnUrlList() != null){
       this.projects.concat(this.urlProjects);
     }
   }

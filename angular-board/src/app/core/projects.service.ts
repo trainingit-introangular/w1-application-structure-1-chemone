@@ -14,8 +14,8 @@ export class ProjectsService implements ProjectCrud {
 
   public insertProject(projectname: string) {
     const projetToAdd: Project = {id: environment.projects.length + 1, name: projectname };
-    //environment.projects.push({...projetToAdd});
-    this.httpClient.post('https://api-base.herokuapp.com/api/pub/projects', projetToAdd).subscribe();
+    environment.projects.push({...projetToAdd});
+    this.httpClient.post('https://api-base.herokuapp.com/api/pub/projects', environment.projects).subscribe();
   }
 
   public editChanges(project: Project) {
@@ -33,8 +33,8 @@ export class ProjectsService implements ProjectCrud {
   }
 
   public returnUrlList(){
-    let projects: any[];
-    this.httpClient.get('https://api-base.herokuapp.com/api/pub/projects').subscribe(apiResponse => (projects = apiResponse));
-    return this.httpClient.get('https://api-base.herokuapp.com/api/pub/projects').subscribe();
+    let projects: Project[];
+    this.httpClient.get<Project[]>('https://api-base.herokuapp.com/api/pub/projects').subscribe(apiResponse => (projects = apiResponse));
+    return projects;
   }
 }

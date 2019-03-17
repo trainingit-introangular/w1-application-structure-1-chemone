@@ -33,15 +33,8 @@ export class ProjectsService implements ProjectCrud {
   }
 
   public returnUrlList(){
+    let projects: any[];
+    this.httpClient.get('https://api-base.herokuapp.com/api/pub/projects').subscribe(apiResponse => (projects = apiResponse));
     return this.httpClient.get('https://api-base.herokuapp.com/api/pub/projects').subscribe();
-  }
-
-  private transformData() {
-    const current = this.currentEuroRates.rates;
-    return Object.keys(current).map(key => ({
-      date: this.currentEuroRates.date,
-      currency: key,
-      euros: current[key]
-    }));
   }
 }

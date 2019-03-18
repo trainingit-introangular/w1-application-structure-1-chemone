@@ -37,6 +37,10 @@ const routes: Routes = [
     path: 'notifications',
     loadChildren: './notifications/notifications.module#NotificationsModule'
     },
+  {
+    path: 'security',
+    loadChildren: './security/security.module#SecurityModule'
+   },
   { path: '**',
     redirectTo: 'not-found'
   }

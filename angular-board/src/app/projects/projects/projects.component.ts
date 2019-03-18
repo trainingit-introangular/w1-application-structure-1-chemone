@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Project} from './models/project';
 import { environment } from 'src/environments/environment';
 import { ProjectsService } from 'src/app/core/projects.service';
+import { Observable } from 'rxjs';
+import { tap, share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-projects',
@@ -11,27 +13,26 @@ import { ProjectsService } from 'src/app/core/projects.service';
 export class ProjectsComponent implements OnInit {
 
   public projects: Project[];
-  public urlProjects: Project[];
+  public urlProjects$: Observable<Project[]>;
 
-  constructor(private servicio: ProjectsService) { }
-  ngOnInit() {
-    this.projects = [];
-    this.urlProjects = [];
-    for (const proyecto of environment.projects) {
-      const project: Project = {
-        id: proyecto.id,
-        name: proyecto.name
-      };
-      this.projects.push(project);
-    }
-    this.urlProjects = this.servicio.returnUrlList();
-    this.projects.concat(this.urlProjects);
+  constructor(private servicio: ProjectsService) {}
 
-  }
+  ngOnInit() {}
 
   public onUpdate(proyectos: string) {
     this.servicio.insertProject(proyectos);
+    //this.projects = environment.projects;
+    this.urlProjects$ = this.servicio.listaObservable$;
+    this.urlProjects$.pipe(share(),
+    tap(() => (this.servicio.returnUrlList() as Project[]).forEach(pry => this.updateProjects(pry))))
+    .subscribe();
+    this.projects = this.projects;
+  }
+
+  private updateProjects(proyecto: Project) {
+    this.servicio.actualizaProyectos();
     this.projects = environment.projects;
+    this.projects.push(proyecto);
   }
 
   public onDelete(id: number) {

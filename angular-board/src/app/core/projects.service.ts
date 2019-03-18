@@ -4,21 +4,37 @@ import { environment } from 'src/environments/environment';
 import { ProjectCrud } from '../projects/projects/models/projectCrud';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, share } from 'rxjs/operators';
+import { tap, share, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService implements ProjectCrud {
   projectList: Project[];
-  public listaObservable$: Observable<Project[]>;
+  public listaObservable$: Observable<Project[]> = null;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.actualizaProyectos();
+  }
+
+  public actualizaProyectos(){
+    this.projectList = [];
+    this.listaObservable$ = this.httpClient.get<Project[]>('https://api-base.herokuapp.com/api/pub/projects').pipe(
+      share(),
+      tap(proyectos => this.vaciaYRellenaCon(proyectos)));
+  }
+
+  private vaciaYRellenaCon(proyectos: Project[]) {
+    if (proyectos != undefined && proyectos.length > 0) {
+      this.projectList.splice(0);
+      proyectos.forEach(p => this.projectList.push(p));
+    }
+}
 
   public insertProject(projectname: string) {
     const projetToAdd: Project = {id: environment.projects.length + 1, name: projectname };
     environment.projects.push({...projetToAdd});
-    this.httpClient.post('https://api-base.herokuapp.com/api/pub/projects', environment.projects).subscribe();
+    this.httpClient.post('https://api-base.herokuapp.com/api/pub/projects', projetToAdd).subscribe();
   }
 
   public editChanges(project: Project) {
@@ -35,18 +51,13 @@ export class ProjectsService implements ProjectCrud {
     return environment.projects.filter(c => c.id == id)[0];
   }
 
-  public returnUrlList(){
-    let projects: Project[];
-    projects = [];
-    this.listaObservable$ = this.httpClient.get<Project[]>('https://api-base.herokuapp.com/api/pub/projects').pipe(
-      share(),
-      tap(apiResponse => (projects.concat(apiResponse))));
-    //this.httpClient.get<Project[]>('https://api-base.herokuapp.com/api/pub/projects').subscribe(apiResponse => (projects = apiResponse));
-    window.alert(projects);
-    return projects;
+  public returnUrlList() {
+    return this.projectList;
   }
+
 
   public clearProjectsUrl(){
     this.httpClient.delete('https://api-base.herokuapp.com/api/pub/projects').subscribe();
   }
+
 }

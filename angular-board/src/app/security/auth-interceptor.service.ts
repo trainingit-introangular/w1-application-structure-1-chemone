@@ -18,7 +18,11 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError(this.handleError.bind(this)));
+      const authHeader = { Authorization: 'bearer ' + this.token };
+      const authReq = req.clone({ setHeaders: authHeader });
+      return next.handle(authReq)
+        .pipe(catchError(this.handleError.bind(this)));
+      // return next.handle(req).pipe(catchError(this.handleError.bind(this)));
   }
 
   private handleError(err) {

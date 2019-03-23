@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class TokenStoreService {
-  //variable privada para usointerno
+  //variable privada para uso interno
   private token = '';
   //produccion de un observable
   private token$ = new BehaviorSubject<string>('');

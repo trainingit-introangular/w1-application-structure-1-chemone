@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-secret',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecretComponent implements OnInit {
 
-  constructor() { }
+  public miObserv$;
+
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  public send(){
+    this.miObserv$ = this.httpClient.get('https://api-base.herokuapp.com/api/priv/operations');
   }
 
 }

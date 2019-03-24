@@ -3,6 +3,7 @@
     <label for="name">Name</label>
     <!--anterior a reactive <input name="name" type="text" [(ngModel)]="projectname" placeholder="Project Name" />-->
     <input name="name" type="text" placeholder="Project Name"/>
+    <span>{{getError('name')}}</span>
     <input value="Save" type="submit" (click)="saveChanges()"/>
     <input value="Delete All Url" type="submit" (click)="deleteUrl()"/>
   </section>

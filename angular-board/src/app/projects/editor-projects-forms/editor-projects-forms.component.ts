@@ -3,7 +3,7 @@ import { ProjectsService } from 'src/app/core/projects.service';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../projects/models/project';
 import { environment } from 'src/environments/environment';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editor-projects-forms',
@@ -19,18 +19,19 @@ export class EditorProjectsFormsComponent implements OnInit {
     this.projectId = activateRoute.snapshot.params['id'];
   }
 
-  private buildForm(){
-    //let name: '';
-    this.formGroup = this.formBuilder.group({
-      name: this.projectEnvironment.name,
-      id: this.projectId
-    });
-  }
-
   ngOnInit() {
     this.projectEnvironment = environment.projects.filter(c => c.id == this.projectId)[0];
     this.buildForm();
 
+  }
+
+  private buildForm(){
+    //let name: '';
+    window.alert(this.projectEnvironment.name + ' form');
+    this.formGroup = this.formBuilder.group({
+      name: [this.projectEnvironment.name, [Validators.minLength(1)]],
+      id: this.projectId
+    });
   }
 
   public saveChanges() {

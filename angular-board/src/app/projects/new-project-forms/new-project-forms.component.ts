@@ -51,4 +51,15 @@ export class NewProjectFormsComponent implements OnInit {
   public deleteUrl(){
     this.serviceProject.clearProjectsUrl();
   }
+
+  public getError(controlName: string): string {
+    window.alert(controlName);
+    let error = '';
+    const control = this.formGroup.get(controlName);
+    //touched el usuario ha entrado en el control y ha salido
+    if (control.touched && control.errors != null) {
+      error = JSON.stringify(control.errors);
+    }
+    return error;
+  }
 }

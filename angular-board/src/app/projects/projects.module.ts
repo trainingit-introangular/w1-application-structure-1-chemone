@@ -5,7 +5,7 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { NewProjectComponent } from './new-project/new-project.component';
 import { EditorProjectComponent } from './editor-project/editor-project.component';
 import { ProjectsComponent } from './projects/projects.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterProjectsComponent } from './filter-projects/filter-projects.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { EditorProjectsFormsComponent } from './editor-projects-forms/editor-projects-forms.component';
@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     ProjectsRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule
   ]

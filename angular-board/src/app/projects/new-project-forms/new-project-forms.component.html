@@ -1,7 +1,8 @@
-<form>
+<form [formGroup] = "formGroup">
   <section>
     <label for="name">Name</label>
-    <input name="name" type="text" [(ngModel)]="projectname" placeholder="Project Name" />
+    <!--anterior a reactive <input name="name" type="text" [(ngModel)]="projectname" placeholder="Project Name" />-->
+    <input name="name" type="text" placeholder="Project Name"/>
     <input value="Save" type="submit" (click)="update.emit(projectname)"/>
     <input value="Delete All Url" type="submit" (click)="deleteUrl()"/>
   </section>

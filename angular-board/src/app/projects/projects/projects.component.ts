@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { ProjectsService } from 'src/app/core/projects.service';
 import { Observable } from 'rxjs';
 import { tap, share } from 'rxjs/operators';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-projects',
@@ -19,8 +20,9 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {}
 
-  public onUpdate(proyectos: string) {
-    this.servicio.insertProject(proyectos);
+  public onUpdate(proyectos: FormGroup) {
+    window.alert(proyectos);
+    this.servicio.insertProject(proyectos.get('name').value);
     //this.projects = environment.projects;
     this.urlProjects$ = this.servicio.listaObservable$;
     this.urlProjects$.pipe(share(),

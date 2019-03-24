@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Project } from '../projects/models/project';
 import { ProjectsService } from 'src/app/core/projects.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, AbstractControl, ControlContainer, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-project-forms',
@@ -30,12 +30,22 @@ export class NewProjectFormsComponent implements OnInit {
   private buildForm(){
     //let name: '';
     this.formGroup = this.formBuilder.group({
-      name: this.projectname
+      name: ['', [Validators.minLength(1)]]
     });
   }
 
-  public saveChanges(){
-    this.serviceProject.insertProject(this.projectname);
+  private validateName(control: AbstractControl){
+    const name = control.value;
+    let error = null;
+    if (name.length == 0 || name == undefined){
+      error = {...error, name: 'needs a name'}
+    }
+    return error;
+  }
+
+  public saveChanges() {
+    window.alert(this.formGroup.get('name').value);
+    this.serviceProject.insertProject(this.formGroup.value);
   }
 
   public deleteUrl(){

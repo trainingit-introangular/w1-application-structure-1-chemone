@@ -29,7 +29,7 @@ export class EditorProjectsFormsComponent implements OnInit {
     //let name: '';
     window.alert(this.projectEnvironment.name + ' form');
     this.formGroup = this.formBuilder.group({
-      name: [this.projectEnvironment.name, [Validators.minLength(1)]],
+      name: [this.projectEnvironment.name, [Validators.required]],
       id: this.projectId
     });
   }

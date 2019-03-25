@@ -13,7 +13,7 @@ export class NewProjectFormsComponent implements OnInit {
   public projectname: string;
   public addedProjects: Project[];
   public formGroup: FormGroup;
-  @Output() public update = new EventEmitter();
+  @Output() public update = new EventEmitter<FormGroup>();
   // codig anterior a reactive forms
   constructor(private formBuilder: FormBuilder, private serviceProject: ProjectsService) {
 
@@ -30,21 +30,11 @@ export class NewProjectFormsComponent implements OnInit {
   private buildForm(){
     //let name: '';
     this.formGroup = this.formBuilder.group({
-      name: ['', [Validators.minLength(1)]]
+      name: ['', [Validators.required]]
     });
   }
 
-  private validateName(control: AbstractControl){
-    const name = control.value;
-    let error = null;
-    if (name.length == 0 || name == undefined){
-      error = {...error, name: 'needs a name'}
-    }
-    return error;
-  }
-
   public saveChanges() {
-    window.alert(this.formGroup.get('name').value);
     this.serviceProject.insertProject(this.formGroup.value);
   }
 
@@ -53,12 +43,11 @@ export class NewProjectFormsComponent implements OnInit {
   }
 
   public getError(controlName: string): string {
-    window.alert(controlName);
     let error = '';
     const control = this.formGroup.get(controlName);
     //touched el usuario ha entrado en el control y ha salido
     if (control.touched && control.errors != null) {
-      error = JSON.stringify(control.errors);
+      error = 'Este campo es obligatorio'; //JSON.stringify(control.errors);
     }
     return error;
   }

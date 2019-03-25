@@ -2,9 +2,9 @@
   <section>
     <label for="name">Name</label>
     <!--anterior a reactive <input name="name" type="text" [(ngModel)]="projectname" placeholder="Project Name" />-->
-    <input name="name" type="text" placeholder="Project Name"/>
-    <span>{{getError('name')}}</span>
-    <input value="Save" type="submit" (click)="saveChanges()"/>
+    <input name="name" formControlName = "name" type="text" placeholder="Project Name"/>
+    <span style="color: red">{{getError('name')}}</span>
+    <input value="Save" type="submit" (click)="update.emit(formGroup)"/>
     <input value="Delete All Url" type="submit" (click)="deleteUrl()"/>
   </section>
   <!--<section>

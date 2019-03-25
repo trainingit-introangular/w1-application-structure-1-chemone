@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Project } from '../projects/projects/models/project';
 import { environment } from 'src/environments/environment';
 import { ProjectCrud } from '../projects/projects/models/projectCrud';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, share, map } from 'rxjs/operators';
+import { tap, share} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +58,11 @@ export class ProjectsService implements ProjectCrud {
 
   public clearProjectsUrl(){
     this.httpClient.delete('https://api-base.herokuapp.com/api/pub/projects').subscribe();
+  }
+
+  private handleRequest(req) {
+    const aDevolver = JSON.stringify(req);
+    return aDevolver;
   }
 
 }

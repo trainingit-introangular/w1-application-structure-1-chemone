@@ -6,7 +6,8 @@ import { MainComponent } from './shell/main/main.component';
 import { FooterComponent } from './shell/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptorService } from '../projects/request-interceptor.service';
 
 @NgModule({
   declarations: [ShellComponent, HeaderComponent, MainComponent, FooterComponent, NotFoundComponent],
@@ -15,6 +16,13 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     HttpClientModule
   ],
-  exports: [ShellComponent]
+  exports: [ShellComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptorService,
+      multi: true
+    }
+  ]
 })
 export class CoreModule { }

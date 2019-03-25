@@ -27,7 +27,6 @@ export class EditorProjectsFormsComponent implements OnInit {
 
   private buildForm(){
     //let name: '';
-    window.alert(this.projectEnvironment.name + ' form');
     this.formGroup = this.formBuilder.group({
       name: [this.projectEnvironment.name, [Validators.required]],
       id: this.projectId
@@ -35,7 +34,16 @@ export class EditorProjectsFormsComponent implements OnInit {
   }
 
   public saveChanges() {
-    window.alert((this.formGroup.value as Project).name);
     this.serviceProject.editChanges(this.formGroup.value as Project);
+  }
+
+  public getError(controlName: string): string {
+    let error = '';
+    const control = this.formGroup.get(controlName);
+    //touched el usuario ha entrado en el control y ha salido
+    if (control.touched && control.errors != null) {
+      error = 'Este campo es obligatorio'; //JSON.stringify(control.errors);
+    }
+    return error;
   }
 }

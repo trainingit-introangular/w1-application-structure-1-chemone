@@ -10,7 +10,8 @@ import { FilterProjectsComponent } from './filter-projects/filter-projects.compo
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { EditorProjectsFormsComponent } from './editor-projects-forms/editor-projects-forms.component';
 import { NewProjectFormsComponent } from './new-project-forms/new-project-forms.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptorService } from './request-interceptor.service';
 
 @NgModule({
   declarations: [NewProjectComponent,
@@ -26,6 +27,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptorService,
+      multi: true
+    }
   ]
 })
 export class ProjectsModule { }

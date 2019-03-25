@@ -21,12 +21,11 @@ export class ProjectsComponent implements OnInit {
   ngOnInit() {}
 
   public onUpdate(proyectos: FormGroup) {
-    window.alert(proyectos);
     this.servicio.insertProject(proyectos.get('name').value);
     //this.projects = environment.projects;
     this.urlProjects$ = this.servicio.listaObservable$;
     this.urlProjects$.pipe(share(),
-    tap(() => (this.servicio.returnUrlList() as Project[]).forEach(pry => this.updateProjects(pry))))
+      tap(() => (this.servicio.returnUrlList() as Project[]).forEach(pry => this.updateProjects(pry))))
     .subscribe();
     this.projects = this.projects;
   }

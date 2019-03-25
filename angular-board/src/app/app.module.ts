@@ -16,7 +16,8 @@ import { HeroesComponent } from './heroes-component/heroes.component';
     AppRoutingModule,
     CoreModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
